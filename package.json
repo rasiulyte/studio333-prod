@@ -1,7 +1,7 @@
 {
   "name": "gallery-site",
   "version": "1.0.0",
-  "description": "Static implementation of the *trippled.studio* prototype provided by Rasa.",
+  "description": "Static implementation of the *studio333* prototype provided by Rasa.",
   "main": "index.js",
   "scripts": {
     "process:images": "node process-images.js"
