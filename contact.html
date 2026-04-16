@@ -12,34 +12,45 @@
 <body>
   <div class="page">
     <header class="site-header">
-      <div class="brand">studio333</div>
-          </header>
+      <a href="gallery.html" class="brand">studio333</a>
+      <nav>
+        <a href="gallery.html">Gallery</a>
+        <a href="featured.html">Featured</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="qr.html">Share</a>
+      </nav>
+    </header>
 
     <main>
-      <section class="detail">
-        <h1>Private inquiries</h1>
-        <div class="detail-card">
-          <div class="detail-content">
-            <h3>Winter Light</h3>
-            <p>Oil, mixed media on canvas<br />
-               48 × 26 inches<br />
-               2024</p>
-            <p>A moment suspended in the stillness between the light and the frost.</p>
-          </div>
-          <form class="inquiry-form">
-            <label>Name<input type="text" placeholder="Enter name" /></label>
-            <label>Email<input type="email" placeholder="Enter email" /></label>
-            <label>Message<textarea placeholder="Message"></textarea></label>
-            <button type="submit">Send</button>
+      <section class="contact-section">
+        <div class="contact-intro">
+          <p class="tagline">Contact</p>
+          <h1>Private inquiries</h1>
+          <hr style="border: none; border-top: 1px solid #e0dbd5; margin: 0 0 20px;" />
+          <p class="contact-subtext">For acquisition inquiries, commissions, or general correspondence.</p>
+          <form class="contact-form" style="margin-top: 32px;">
+            <div class="contact-field">
+              <label class="contact-label">Name</label>
+              <input type="text" />
+            </div>
+            <div class="contact-field">
+              <label class="contact-label">Email</label>
+              <input type="email" />
+            </div>
+            <div class="contact-field">
+              <label class="contact-label">Message</label>
+              <textarea></textarea>
+            </div>
+            <button type="submit" class="contact-submit ghost-link">Send inquiry →</button>
           </form>
         </div>
       </section>
     </main>
 
     <footer class="footer-nav">
+      <hr style="border: none; border-top: 1px solid #c8c2ba; margin: 0 0 24px; width: 100%;" />
       <span class="copyright">© 2026 studio333. All rights reserved.</span>
-      <span>inquiries@studio333.studio</span>
-          </footer>
+    </footer>
   </div>
 </body>
 </html>
