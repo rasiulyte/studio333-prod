@@ -121,7 +121,7 @@ nav a.active {
 .carousel {
   position: relative;
   background: transparent;
-  border: none;
+  border: 1px solid var(--border);
   box-shadow: none;
   padding: 24px;
 }
@@ -180,21 +180,22 @@ nav a.active {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  width: 44px;
-  height: 44px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #b5a48a;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 .carousel-control:hover,
 .carousel-control:focus {
+  background: rgba(255,255,255,0.65);
   color: var(--accent);
 }
 
@@ -233,15 +234,6 @@ nav a.active {
   letter-spacing: 0.08em;
 }
 
-.carousel-inquiry {
-  margin-top: 16px;
-  text-align: center;
-  letter-spacing: 0.15em;
-}
-
-.carousel-inquiry .ghost-link {
-  letter-spacing: 0.2em;
-}
 
 /* ── Featured ── */
 
