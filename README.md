@@ -1,6 +1,6 @@
 # Gallery Website Prototype
 
-Static implementation of the *studio333* prototype provided by Rasa.
+Static implementation of the *studio333* prototype.
 
 ## Stack
 - Pure HTML + CSS (no build tools)
