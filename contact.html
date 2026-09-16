@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="inquire.css" />
   </head>
   <body>
     <div class="page">
@@ -19,65 +20,43 @@
         <nav>
           <a href="gallery.html">Gallery</a>
           <a href="featured.html">Featured</a>
+          <a href="gallery.html#picker">Inquiries</a>
           <a href="contact.html" class="active">Contact</a>
           <a href="qr.html">Share</a>
         </nav>
       </header>
       <main>
-        <section class="contact-section">
+        <section class="contact-section contact-simple">
           <div class="contact-intro">
-            <p class="tagline">Contact</p>
-            <h1>Private inquiries</h1>
-            <hr style="border: none; border-top: 1px solid #e0dbd5; margin: 0 0 20px;" />
-            <p class="contact-subtext">For acquisition inquiries, commissions, or general correspondence.</p>
-
-            <!--
-              ============================================================
-              CONTACT FORM — sends to Dana@studio333gallery.com
-              ============================================================
-              This form uses Formspree (https://formspree.io) to deliver
-              submissions by email. No server code is required, which is
-              why it keeps working no matter where the site is hosted.
-
-              ONE-TIME SETUP (must be done once, by anyone):
-                1. Go to https://formspree.io and create a free account
-                   using Dana@studio333gallery.com.
-                2. Create a new form (name it e.g. "studio333 inquiries").
-                3. Formspree gives you a form endpoint that looks like:
-                     https://formspree.io/f/abcdwxyz
-                4. If the Formspree endpoint changes, update the form
-                   `action` URL below (the part after /f/).
-                5. Submit the form once and confirm the verification email
-                   Formspree sends to the configured inbox. Done.
-
-              ============================================================
-            -->
-            <form
-              class="contact-form"
-              style="margin-top: 32px;"
-              action="https://formspree.io/f/mbdbvnzg"
-              method="POST"
-            >
-              <div class="contact-field">
-                <label class="contact-label" for="name">Name</label>
-                <input type="text" id="name" name="name" />
-              </div>
-              <div class="contact-field">
-                <label class="contact-label" for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="contact-field">
-                <label class="contact-label" for="message">Message</label>
-                <textarea id="message" name="message"></textarea>
-              </div>
-
-              <!-- Sets the email subject line Dana sees -->
-              <input type="hidden" name="_subject" value="New studio333 inquiry" />
-              <!-- Simple spam honeypot: bots fill this, humans never see it -->
-              <input type="text" name="_gotcha" style="display:none" />
-
-              <button type="submit" class="contact-submit ghost-link">Send inquiry →</button>
-            </form>
+            <h1>Contact</h1>
+            <hr style="border: none; border-top: 1px solid #e0dbd5; margin: 0 0 28px;" />
+            <div class="contact-direct">
+              <a
+                class="contact-chip social-ig"
+                href="https://www.instagram.com/artbystudio333/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="studio333 on Instagram"
+              >
+                <svg class="social-ig-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" focusable="false">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                  <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/>
+                </svg>
+                <span class="contact-chip-label">Instagram</span>
+              </a>
+              <a
+                class="contact-chip contact-mail"
+                href="mailto:dana@studio333gallery.com"
+                aria-label="Email Dana"
+              >
+                <svg class="contact-mail-icon" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" focusable="false">
+                  <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M4 7.5 12 13l8-5.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="contact-chip-label">Email</span>
+              </a>
+            </div>
           </div>
         </section>
       </main>

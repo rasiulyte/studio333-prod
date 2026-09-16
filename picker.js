@@ -1,0 +1,416 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('picker-grid');
+  if (!grid) return;
+
+  const overlay = document.getElementById('picker');
+  const form = document.querySelector('.picker-form');
+  const chosenEl = document.getElementById('picker-chosen');
+  const paintingsEl = document.getElementById('picker-paintings');
+  const urlsEl = document.getElementById('picker-urls');
+  const subjectEl = document.getElementById('picker-subject');
+  const editionsEl = document.getElementById('picker-editions');
+  const listEl = document.getElementById('picker-edition-list');
+  const statusEl = document.getElementById('picker-status');
+  const messageEl = document.getElementById('picker-message');
+  let lastAutoMessage = '';
+  const AJAX = 'https://st333inqfn29.azurewebsites.net/api/inquire';
+  const selected = new Set();
+  const editions = new Map();
+
+  const FALLBACK = [
+    ['Twilight Passage', 'assets/art-08.jpg'],
+    ['Golden Veil', 'assets/art-07.jpg'],
+    ['Winter Light', 'assets/art-01.jpg'],
+    ['Aerial Frost', 'assets/art-02.jpg'],
+    ['Veiled Branches', 'assets/art-03.jpg'],
+    ['Celestial Drift', 'assets/art-04.jpg'],
+    ['Radiant Mist', 'assets/art-05.jpg'],
+    ['Silent Echoes', 'assets/art-06.jpg'],
+    ['Frosted Horizon', 'assets/art-09.jpg'],
+    ['Echoing Stillness', 'assets/art-10.jpg'],
+    ['Opaline Dusk', 'assets/art-11.jpg'],
+    ['Shifting Silence', 'assets/art-12.jpg'],
+    ['Gilded Whisper', 'assets/art-13.jpg'],
+    ['Luminous Veins', 'assets/art-14.jpg'],
+    ['Hushed Aurora', 'assets/art-15.jpg'],
+    ['Crystalline Path', 'assets/art-16.jpg'],
+    ['Solstice Veil', 'assets/art-17.jpg'],
+    ['Frozen Reverie', 'assets/art-18.jpg'],
+    ['Silent Prism', 'assets/art-19.jpg'],
+    ['Opal Frost', 'assets/art-20.jpg'],
+    ['Aurora Drift', 'assets/art-21.jpg'],
+    ['Radiant Spiral', 'assets/art-22.jpg'],
+    ['Ivory Cascade', 'assets/art-23.jpg'],
+    ['Pale Meridian', 'assets/art-24.jpg'],
+    ['Haloed Rift', 'assets/art-25.jpg'],
+    ['Alabaster Bloom', 'assets/art-26.jpg'],
+    ['Quiet Ripple', 'assets/art-27.jpg'],
+    ['Amber Fissure', 'assets/art-28.jpg'],
+    ['Soft Orbit', 'assets/art-29.jpg'],
+    ['Nocturne Frost', 'assets/art-30.jpg'],
+    ['Feathered Dusk', 'assets/art-31.jpg'],
+    ['Sunlit Fracture', 'assets/art-32.jpg'],
+    ['Solar Bloom', 'assets/art-33.jpg'],
+    ['Lunar Bloom', 'assets/art-34.jpg']
+  ];
+
+  const seen = new Set();
+  const fromSlides = [];
+  document.querySelectorAll('.slide').forEach((slide) => {
+    const img = slide.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src');
+    if (!src) return;
+    const filename = src.split('/').pop();
+    if (seen.has(filename)) return;
+    seen.add(filename);
+    const nameEl = slide.querySelector('.piece-name');
+    fromSlides.push({
+      title: nameEl ? nameEl.textContent.trim() : filename,
+      src,
+      filename,
+      source: img
+    });
+  });
+
+  const works = (fromSlides.length ? fromSlides : FALLBACK.map(([title, src]) => ({
+    title,
+    src,
+    filename: src.split('/').pop(),
+    source: null
+  }))).filter((w) => w.src);
+
+  works.forEach((w) => {
+    const warm = new Image();
+    warm.src = w.src;
+    if (window.Studio333Availability) {
+      Studio333Availability.register(w.title, Studio333Availability.numFromFilename(w.filename || w.src));
+    }
+  });
+
+  const absoluteUrls = (work) => {
+    const origin = window.location.origin;
+    const src = work.src.replace(/^\/+/, '');
+    const stem = work.filename.replace(/\.[^.]+$/, '');
+    return origin + '/' + src + '\n' + origin + '/gallery.html#' + stem;
+  };
+
+  const encodeSet = (set) => {
+    const out = [];
+    if (set.has('original')) out.push('original');
+    if (set.has('giclee')) out.push('giclee');
+    return out.join(',');
+  };
+
+  const failMessage = (res, bodyText, json) => {
+    const raw = (json && (json.message || json.error)) || bodyText || (res ? ('HTTP ' + res.status) : 'network error');
+    const lower = String(raw).toLowerCase() + ' ' + (res ? String(res.status) : '');
+    if ((res && res.status === 429) || /rate|limit|too many/.test(lower)) {
+      return 'Could not send. Please try again.';
+    }
+    const text = String(raw).trim();
+    return text || 'Could not send. Please try again.';
+  };
+
+  const renderEditionList = () => {
+    if (!listEl) return;
+    const chosen = works.filter((w) => selected.has(w.title));
+    listEl.innerHTML = '';
+    if (!chosen.length) {
+      listEl.hidden = true;
+      return;
+    }
+    listEl.hidden = false;
+    chosen.forEach((work) => {
+      const item = document.createElement('div');
+      item.className = 'edition-item';
+      const title = document.createElement('p');
+      title.className = 'edition-item-title';
+      title.textContent = work.title;
+      const row = document.createElement('div');
+      row.className = 'edition-row';
+      row.setAttribute('role', 'group');
+      row.setAttribute('aria-label', "I'm asking about " + work.title);
+      ['original', 'giclee'].forEach((key) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'edition-chip';
+        chip.dataset.edition = key;
+        const origOk = !window.Studio333Availability || Studio333Availability.isOriginalAvailable(work);
+        const unavailable = key === 'original' && !origOk;
+        if (unavailable) {
+          chip.classList.add('is-unavailable');
+          chip.disabled = true;
+          chip.setAttribute('aria-disabled', 'true');
+          chip.title = 'Original sold';
+          chip.innerHTML = '<span class="edition-chip-label">Original</span><span class="edition-sold-tag">Sold</span>';
+          if (editions.has(work.title)) editions.get(work.title).delete('original');
+        } else {
+          chip.textContent = key === 'original' ? 'Original' : 'Giclée print';
+        }
+        const on = !unavailable && editions.has(work.title) && editions.get(work.title).has(key);
+        chip.classList.toggle('is-on', on);
+        chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+        chip.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (unavailable) return;
+          if (!editions.has(work.title)) editions.set(work.title, new Set());
+          const set = editions.get(work.title);
+          if (set.has(key)) set.delete(key);
+          else set.add(key);
+          sync();
+        });
+        row.appendChild(chip);
+      });
+      item.appendChild(title);
+      item.appendChild(row);
+      listEl.appendChild(item);
+    });
+  };
+
+
+  const formatTitleList = (list) => {
+    if (!list.length) return '';
+    if (list.length === 1) return list[0];
+    if (list.length === 2) return list[0] + ' and ' + list[1];
+    return list.slice(0, -1).join(', ') + ', and ' + list[list.length - 1];
+  };
+
+  const buildInquiryMessage = (list) => {
+    if (!list.length) return '';
+    return "I'm inquiring about " + formatTitleList(list) + '.';
+  };
+
+  const sync = () => {
+    const chosen = works.filter((w) => selected.has(w.title));
+    const list = chosen.map((w) => w.title);
+    Array.from(editions.keys()).forEach((title) => {
+      if (!selected.has(title)) editions.delete(title);
+    });
+    if (paintingsEl) paintingsEl.value = list.join(', ');
+    if (urlsEl) urlsEl.value = chosen.map(absoluteUrls).join('\n');
+    if (editionsEl) {
+      editionsEl.value = chosen.map((w) => {
+        const set = editions.get(w.title) || new Set();
+        return w.title + ': ' + encodeSet(set);
+      }).join('\n');
+    }
+    if (subjectEl) {
+      subjectEl.value = list.length
+        ? 'studio333 inquiry — ' + list.join(', ')
+        : 'studio333 general inquiry';
+    }
+    if (chosenEl) {
+      chosenEl.textContent = list.length
+        ? list.length + ' selected'
+        : 'Select one or more works to inquire';
+    }
+    if (messageEl) {
+      const auto = buildInquiryMessage(list);
+      const cur = messageEl.value;
+      if (!cur.trim() || cur === lastAutoMessage) {
+        messageEl.value = auto;
+        lastAutoMessage = auto;
+      }
+    }
+
+    grid.querySelectorAll('.picker-tile').forEach((btn) => {
+      const on = selected.has(btn.dataset.title);
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      const mark = btn.querySelector('.picker-check');
+      if (mark) mark.hidden = !on;
+    });
+    renderEditionList();
+  };
+
+  grid.innerHTML = '';
+  works.forEach((work) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'picker-tile';
+    btn.dataset.title = work.title;
+    btn.dataset.file = work.filename;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Select ' + work.title);
+    const img = document.createElement('img');
+    img.src = work.src;
+    img.alt = work.title;
+    const mark = document.createElement('span');
+    mark.className = 'picker-check';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.hidden = true;
+    mark.textContent = '\u2713';
+    btn.appendChild(img);
+    btn.appendChild(mark);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (selected.has(work.title)) {
+        selected.delete(work.title);
+        editions.delete(work.title);
+      } else {
+        selected.add(work.title);
+      }
+      sync();
+    });
+    grid.appendChild(btn);
+  });
+  sync();
+
+  const applyQueryPreselect = () => {
+    const params = new URLSearchParams(location.search);
+    const worksParam = params.get('works');
+    if (!worksParam) return;
+    const editionParam = (params.get('edition') || 'giclee').toLowerCase();
+    const wanted = worksParam.split(',').map((s) => {
+      try { return decodeURIComponent(s.trim()); } catch (err) { return s.trim(); }
+    }).filter(Boolean);
+    const titleByLower = {};
+    const fileByLower = {};
+    works.forEach((w) => {
+      titleByLower[w.title.toLowerCase()] = w.title;
+      fileByLower[w.filename.toLowerCase()] = w.title;
+      fileByLower[w.filename.replace(/\.[^.]+$/, '').toLowerCase()] = w.title;
+    });
+    wanted.forEach((token) => {
+      const key = token.toLowerCase();
+      const match = titleByLower[key] || fileByLower[key];
+      if (!match) return;
+      selected.add(match);
+      const workObj = works.find((w) => w.title === match);
+      const origOk = !window.Studio333Availability || Studio333Availability.isOriginalAvailable(workObj || match);
+      if (!editions.has(match)) editions.set(match, new Set());
+      if (editionParam === 'giclee') {
+        editions.get(match).add('giclee');
+      } else if (editionParam === 'original') {
+        if (origOk) editions.get(match).add('original');
+        else editions.get(match).add('giclee');
+      } else if (editionParam === 'original,giclee' || editionParam === 'giclee,original') {
+        editions.get(match).add('giclee');
+        if (origOk) editions.get(match).add('original');
+      }
+    });
+    sync();
+    const firstOn = grid.querySelector('.picker-tile.is-on');
+    if (firstOn && typeof firstOn.scrollIntoView === 'function') {
+      firstOn.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  };
+  applyQueryPreselect();
+
+  const resetSent = () => {
+    if (form) form.hidden = false;
+    if (statusEl) {
+      statusEl.hidden = true;
+      statusEl.textContent = '';
+    }
+  };
+
+  const openPicker = () => {
+    resetSent();
+    if (overlay) {
+      const inquire = document.getElementById('inquire');
+      if (inquire) {
+        inquire.hidden = true;
+        document.body.classList.remove('is-inquire');
+      }
+      overlay.hidden = false;
+      document.body.classList.add('is-picker');
+      const closeBtn = overlay.querySelector('.picker-close');
+      if (closeBtn) closeBtn.focus();
+    }
+  };
+
+  const closePicker = () => {
+    if (!overlay || overlay.hidden) return;
+    overlay.hidden = true;
+    document.body.classList.remove('is-picker');
+  };
+
+  document.querySelectorAll('.picker-open').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPicker();
+    });
+  });
+
+  if (overlay) {
+    const closeBtn = overlay.querySelector('.picker-close');
+    if (closeBtn) closeBtn.addEventListener('click', closePicker);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePicker();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePicker();
+    });
+  }
+
+  if (location.hash === '#picker') openPicker();
+  window.addEventListener('hashchange', () => {
+    if (location.hash === '#picker') openPicker();
+  });
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const gotcha = form.querySelector('[name="_gotcha"]');
+      if (gotcha && gotcha.value) return;
+      const chosen = works.filter((w) => selected.has(w.title));
+      const missing = chosen.some((w) => !encodeSet(editions.get(w.title) || new Set()));
+      if (missing) {
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = 'Choose original or print for each work.';
+        }
+        return;
+      }
+      sync();
+      const payload = {};
+      new FormData(form).forEach((value, key) => {
+        if (key === '_gotcha' || key === '_next') return;
+        payload[key] = value;
+      });
+      payload._captcha = 'false';
+      const submit = form.querySelector('[type="submit"]');
+      if (submit) submit.disabled = true;
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.textContent = 'Sending\u2026';
+      }
+      try {
+        const res = await fetch(AJAX, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        const bodyText = await res.text();
+        let json = {};
+        try { json = JSON.parse(bodyText); } catch (err) {}
+        console.log('inquire', res.status, bodyText);
+        const ok = res.ok && (json.success === true || json.success === 'true');
+        if (!ok) {
+          if (statusEl) statusEl.textContent = failMessage(res, bodyText, json);
+          return;
+        }
+        form.hidden = true;
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Sent. I'll reply by email.";
+        }
+      } catch (err) {
+        console.log('inquire', err);
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = failMessage(null, err && err.message, {});
+        }
+      } finally {
+        if (submit) submit.disabled = false;
+      }
+    });
+  }
+});
