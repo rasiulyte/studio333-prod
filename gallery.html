@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="inquire.css" />
 </head>
 <body>
   <div class="page">
@@ -16,194 +17,170 @@
       <nav>
         <a href="gallery.html" class="active">Gallery</a>
         <a href="featured.html">Featured</a>
+        <a class="picker-open" href="#picker">Inquiries</a>
         <a href="contact.html">Contact</a>
         <a href="qr.html">Share</a>
       </nav>
     </header>
-
     <main>
       <section class="gallery-hero">
         <div class="gallery-copy">
           <p class="tagline">Gallery</p>
           <h1>Silent constellations of frost and gold</h1>
           <p>Each work is captured in a meditative interval — textures suspended between breath and quiet light.</p>
-          <a class="ghost-link" href="contact.html" style="margin-top: 24px; display: inline-block;">Private inquiries →</a>
         </div>
         <div class="carousel-column">
         <div class="carousel" role="region" aria-label="Artwork carousel">
-          <button class="carousel-control prev" aria-label="Previous artwork">←</button>
+          <button class="carousel-control prev" type="button" aria-label="Previous artwork">←</button>
           <div class="slides" aria-live="polite">
-            <figure class="slide active" data-index="0">
-              <img src="assets/art-01.jpg" alt="Winter Light artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Winter Light</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="1">
-              <img src="assets/art-02.jpg" alt="Aerial Frost artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Aerial Frost</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="2">
-              <img src="assets/art-03.jpg" alt="Veiled Branches artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Veiled Branches</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="3">
-              <img src="assets/art-04.jpg" alt="Celestial Drift artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Celestial Drift</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="4">
-              <img src="assets/art-05.jpg" alt="Radiant Mist artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Radiant Mist</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="5">
-              <img src="assets/art-06.jpg" alt="Silent Echoes artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Silent Echoes</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="6">
-              <img src="assets/art-07.jpg" alt="Golden Veil artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Golden Veil</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="7">
-              <img src="assets/art-08.jpg" alt="Twilight Passage artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Twilight Passage</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="8">
-              <img src="assets/art-09.jpg" alt="Frosted Horizon artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Frosted Horizon</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="9">
-              <img src="assets/art-10.jpg" alt="Echoing Stillness artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Echoing Stillness</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="10">
-              <img src="assets/art-11.jpg" alt="Opaline Dusk artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Opaline Dusk</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="11">
-              <img src="assets/art-12.jpg" alt="Shifting Silence artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Shifting Silence</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="12">
-              <img src="assets/art-13.jpg" alt="Gilded Whisper artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Gilded Whisper</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="13">
-              <img src="assets/art-14.jpg" alt="Luminous Veins artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Luminous Veins</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="14">
-              <img src="assets/art-15.jpg" alt="Hushed Aurora artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Hushed Aurora</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="15">
-              <img src="assets/art-16.jpg" alt="Crystalline Path artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Crystalline Path</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="16">
-              <img src="assets/art-17.jpg" alt="Solstice Veil artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Solstice Veil</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="17">
-              <img src="assets/art-18.jpg" alt="Frozen Reverie artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Frozen Reverie</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="18">
-              <img src="assets/art-19.jpg" alt="Silent Prism artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Silent Prism</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="19">
-              <img src="assets/art-20.jpg" alt="Opal Frost artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Opal Frost</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="20">
-              <img src="assets/art-21.jpg" alt="Aurora Drift artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Aurora Drift</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-            <figure class="slide" data-index="21">
-              <img src="assets/art-22.jpg" alt="Radiant Spiral artwork" />
-              <figcaption aria-label="Artwork details">
-                <span class="piece-name">Radiant Spiral</span><br>
-                <span class="piece-meta">Acrylic, mixed media on canvas</span>
-              </figcaption>
-            </figure>
-          </div>
-          <button class="carousel-control next" aria-label="Next artwork">→</button>
+<figure class="slide active" data-index="0"><img src="assets/art-08.jpg" alt="Twilight Passage artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Twilight Passage</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="1"><img src="assets/art-07.jpg" alt="Golden Veil artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Golden Veil</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="2"><img src="assets/art-01.jpg" alt="Winter Light artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Winter Light</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="3"><img src="assets/art-02.jpg" alt="Aerial Frost artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Aerial Frost</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="4"><img src="assets/art-03.jpg" alt="Veiled Branches artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Veiled Branches</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="5"><img src="assets/art-04.jpg" alt="Celestial Drift artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Celestial Drift</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="6"><img src="assets/art-05.jpg" alt="Radiant Mist artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Radiant Mist</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="7"><img src="assets/art-06.jpg" alt="Silent Echoes artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Silent Echoes</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="8"><img src="assets/art-09.jpg" alt="Frosted Horizon artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Frosted Horizon</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="9"><img src="assets/art-10.jpg" alt="Echoing Stillness artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Echoing Stillness</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="10"><img src="assets/art-11.jpg" alt="Opaline Dusk artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Opaline Dusk</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="11"><img src="assets/art-12.jpg" alt="Shifting Silence artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Shifting Silence</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="12"><img src="assets/art-13.jpg" alt="Gilded Whisper artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Gilded Whisper</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="13"><img src="assets/art-14.jpg" alt="Luminous Veins artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Luminous Veins</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="14"><img src="assets/art-15.jpg" alt="Hushed Aurora artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Hushed Aurora</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="15"><img src="assets/art-16.jpg" alt="Crystalline Path artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Crystalline Path</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="16"><img src="assets/art-17.jpg" alt="Solstice Veil artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Solstice Veil</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="17"><img src="assets/art-18.jpg" alt="Frozen Reverie artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Frozen Reverie</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="18"><img src="assets/art-19.jpg" alt="Silent Prism artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Silent Prism</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="19"><img src="assets/art-20.jpg" alt="Opal Frost artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Opal Frost</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="20"><img src="assets/art-21.jpg" alt="Aurora Drift artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Aurora Drift</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="21"><img src="assets/art-22.jpg" alt="Radiant Spiral artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Radiant Spiral</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="22"><img src="assets/art-23.jpg" alt="Ivory Cascade artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Ivory Cascade</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="23"><img src="assets/art-24.jpg" alt="Pale Meridian artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Pale Meridian</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="24"><img src="assets/art-25.jpg" alt="Haloed Rift artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Haloed Rift</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="25"><img src="assets/art-26.jpg" alt="Alabaster Bloom artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Alabaster Bloom</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="26"><img src="assets/art-27.jpg" alt="Quiet Ripple artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Quiet Ripple</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="27"><img src="assets/art-28.jpg" alt="Amber Fissure artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Amber Fissure</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="28"><img src="assets/art-29.jpg" alt="Soft Orbit artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Soft Orbit</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="29"><img src="assets/art-30.jpg" alt="Nocturne Frost artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Nocturne Frost</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="30"><img src="assets/art-31.jpg" alt="Feathered Dusk artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Feathered Dusk</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="31"><img src="assets/art-32.jpg" alt="Sunlit Fracture artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Sunlit Fracture</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="32"><img src="assets/art-33.jpg" alt="Solar Bloom artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Solar Bloom</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+<figure class="slide" data-index="33"><img src="assets/art-34.jpg" alt="Lunar Bloom artwork" /><figcaption aria-label="Artwork details"><span class="piece-name">Lunar Bloom</span><br><span class="piece-meta">Acrylic, mixed media on canvas</span><br><a class="ghost-link inquire-open" href="#inquire">Inquire →</a></figcaption></figure>
+</div>
+          <button class="carousel-control next" type="button" aria-label="Next artwork">→</button>
           <div class="carousel-progress-container">
             <div class="carousel-progress-bar"><div class="carousel-progress"></div></div>
-            <div class="carousel-fraction"><span id="carousel-current">1</span> / <span id="carousel-total">22</span></div>
+            <div class="carousel-fraction"><span id="carousel-current">1</span> / <span id="carousel-total">34</span></div>
           </div>
         </div>
         </div>
     </section>
-
     </main>
-
     <footer class="footer-nav">
       <hr style="border: none; border-top: 1px solid #c8c2ba; margin: 0 0 24px; width: 100%;" />
       <span class="copyright">© 2026 studio333. All rights reserved.</span>
     </footer>
   </div>
+  <div class="inquire" id="inquire" hidden>
+    <div class="inquire-panel">
+      <button class="inquire-close ghost-link" type="button" aria-label="Close inquiry">Close</button>
+      <div class="inquire-work">
+        <img id="inquire-img" src="assets/art-01.jpg" alt="Winter Light artwork" />
+        <p class="piece-name" id="inquire-title">Winter Light</p>
+        <p class="piece-meta" id="inquire-medium">Acrylic, mixed media on canvas</p>
+      </div>
+      <div class="edition" id="inquire-edition">
+        <p class="edition-label">I'm asking about</p>
+        <div class="edition-row" id="inquire-edition-row" role="group" aria-label="I'm asking about" tabindex="-1">
+          <button type="button" class="edition-chip" data-edition="original" aria-pressed="false">Original</button>
+          <button type="button" class="edition-chip" data-edition="giclee" aria-pressed="false">Giclée print</button>
+        </div>
+        <p class="edition-help">Original when available, or a giclée print. Sold originals are marked.</p>
+      </div>
+      <!-- Preview routing uses Azure Function st333inqfn29. -->
+      <form class="contact-form inquire-form" action="https://st333inqfn29.azurewebsites.net/api/inquire" method="POST">
+        <div class="contact-field">
+          <label class="contact-label" for="inquire-name">Name</label>
+          <input type="text" id="inquire-name" name="name" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="inquire-email">Email</label>
+          <input type="email" id="inquire-email" name="email" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="inquire-phone">Phone</label>
+          <input type="tel" id="inquire-phone" name="phone" />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="inquire-message">Message</label>
+          <textarea id="inquire-message" name="message"></textarea>
+        </div>
+        <input type="hidden" name="painting" id="inquire-painting" />
+        <input type="hidden" name="image" id="inquire-image" />
+        <input type="hidden" name="index" id="inquire-index" />
+        <input type="hidden" name="painting_urls" id="inquire-urls" />
+        <input type="hidden" name="edition" id="inquire-edition-value" />
+        <input type="hidden" name="source" value="overlay" />
+        <input type="hidden" name="_subject" id="inquire-subject" value="New studio333 inquiry" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://www.studio333gallery.com/gallery.html" />
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
+        <p class="inquire-status" id="inquire-status" hidden></p>
+        <button type="submit" class="contact-submit ghost-link">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="picker" id="picker" hidden>
+    <div class="picker-panel">
+      <button class="picker-close ghost-link" type="button" aria-label="Close inquiries">Close</button>
+      <p class="tagline">Private inquiries</p>
+      <h2 class="picker-title">Select artwork</h2>
+      <p class="picker-lede">Inquire about an original when it&rsquo;s still available (not every piece is), or a gicl&eacute;e print. Those are the only two options.</p>
+      <div class="picker-grid" id="picker-grid"></div>
+      <p class="picker-chosen" id="picker-chosen">Select one or more works to inquire</p>
+      <!-- Preview routing uses Azure Function st333inqfn29. -->
+      <form class="contact-form picker-form" action="https://st333inqfn29.azurewebsites.net/api/inquire" method="POST">
+        <div class="edition-list" id="picker-edition-list" hidden></div>
+                <details class="giclee-info picker-giclee-info">
+          <summary class="giclee-info-summary">
+            <span class="giclee-info-mark" aria-hidden="true">i</span>
+            <span>What&rsquo;s a gicl&eacute;e?</span>
+          </summary>
+          <p class="giclee-info-body">A gicl&eacute;e is a fine-art print of the painting — archival inks on museum paper or canvas. Close to the original. Made to last.</p>
+        </details>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-name">Name</label>
+          <input type="text" id="picker-name" name="name" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-email">Email</label>
+          <input type="email" id="picker-email" name="email" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-phone">Phone</label>
+          <input type="tel" id="picker-phone" name="phone" />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-message">Message</label>
+          <textarea id="picker-message" name="message"></textarea>
+        </div>
+        <input type="hidden" name="paintings" id="picker-paintings" />
+        <input type="hidden" name="painting_urls" id="picker-urls" />
+        <input type="hidden" name="editions" id="picker-editions" />
+        <input type="hidden" name="source" id="picker-source" value="picker" />
+        <input type="hidden" name="_subject" id="picker-subject" value="studio333 general inquiry" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://www.studio333gallery.com/gallery.html" />
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
+        <p class="inquire-status" id="picker-status" hidden></p>
+        <button type="submit" class="contact-submit ghost-link">Send</button>
+      </form>
+    </div>
+  </div>
+  <script src="availability.js" defer></script>
   <script src="gallery.js" defer></script>
+  <script src="picker.js" defer></script>
 </body>
 </html>

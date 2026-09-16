@@ -1,0 +1,134 @@
+/* Featured Bis — original-site look, phone stack */
+
+.featured-main {
+  padding: 48px 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.featured-main .exhibition-title {
+  margin-bottom: 16px;
+}
+
+.featured-main .exhibition-body {
+  margin: 0 0 8px;
+}
+
+.contact-art {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 4px 0 28px;
+}
+
+.wall-works {
+  width: 100%;
+  margin: 0 0 32px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  flex: none;
+  overflow: visible;
+}
+
+@media (min-width: 601px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.featured-tile {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  border: none;
+  background: #111;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.featured-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+#buy .inquire-work img {
+  width: 100%;
+  height: auto;
+  background: #111;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.standin-mark {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5f5f3;
+  background: rgba(28, 28, 28, 0.55);
+  padding: 2px 5px;
+  pointer-events: none;
+}
+
+.wall-empty {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.featured-main .exhibition-image-block {
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+.featured-main .exhibition-visit {
+  margin-top: 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.see-all {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: #b6b1a9;
+}
+
+@media (max-width: 600px) {
+  .featured-main {
+    padding: 32px 0 32px;
+  }
+}
+
+.buy-help {
+  margin: 0 0 20px;
+}
+
+.buy-kind {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
