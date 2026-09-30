@@ -6,7 +6,7 @@ Art gallery website for **studio333** by Rasa. Live at [studio333gallery.com](ht
 
 | Page | File | Description |
 |------|------|-------------|
-| Gallery | `gallery.html` | Carousel of 34 works, inquire overlay, multi-work picker |
+| Gallery | `gallery.html` | Carousel of 36 works, inquire overlay, multi-work picker |
 | Featured | `featured.html` | Bis on Main — Bellevue exhibition |
 | Contact | `contact.html` | Instagram and email |
 | Share | `qr.html` | QR code linking to the gallery |
@@ -28,7 +28,7 @@ Bis wall order in the gallery: Twilight Passage, then Golden Veil, then the rema
 
 ## Assets
 
-- `assets/art-01.jpg` — `art-34.jpg`
+- `assets/art-01.jpg` — `art-36.jpg`
 - `assets/framed/art-07.jpg`, `art-08.jpg` — framed Bis works
 - `assets/bis/Bis_1.jpg` — Bis on Main exhibition photo
 - `assets/QR/qr-code-new.png` — QR code linking to studio333gallery.com
