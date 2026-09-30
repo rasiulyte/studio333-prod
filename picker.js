@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ['Solar Bloom', 'assets/art-33.jpg'],
     ['Lunar Bloom', 'assets/art-34.jpg'],
     ['Eye of the Storm', 'assets/art-35.jpg'],
-    ['Ember Tide', 'assets/art-36.jpg']
+    ['Silver Tide', 'assets/art-36.jpg']
   ];
 
   const seen = new Set();
