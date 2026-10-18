@@ -2,11 +2,12 @@
  * Numbers match assets/art-NN.jpg. Edit this list when stock changes.
  * Jonathan / Rasa Notes list (2026-09-13): 5,12,14,15,18,22,23,25,26,27,28.
  * 2026-09-30: Rasa confirmed 35 (Eye of the Storm) and 36 (Silver Tide) originals are available.
+ * 2026-10-18: Rasa confirmed 37 (Frozen River) and 38 (Twin Moons) originals are available.
  * Everything else: original sold (giclée still available).
  */
 (function (global) {
   const ORIGINAL_AVAILABLE = new Set([
-    5, 12, 14, 15, 18, 22, 23, 25, 26, 27, 28, 35, 36
+    5, 12, 14, 15, 18, 22, 23, 25, 26, 27, 28, 35, 36, 37, 38
   ]);
 
   const titleToNum = {};
