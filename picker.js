@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('picker-grid');
   if (!grid) return;
 
-  const overlay = document.getElementById('picker');
   const form = document.querySelector('.picker-form');
   const chosenEl = document.getElementById('picker-chosen');
   const paintingsEl = document.getElementById('picker-paintings');
@@ -267,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(location.search);
     const worksParam = params.get('works');
     if (!worksParam) return;
-    const editionParam = (params.get('edition') || 'giclee').toLowerCase();
+    const editionParam = (params.get('edition') || '').toLowerCase();
     const wanted = worksParam.split(',').map((s) => {
       try { return decodeURIComponent(s.trim()); } catch (err) { return s.trim(); }
     }).filter(Boolean);
@@ -304,57 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   applyQueryPreselect();
 
-  const resetSent = () => {
-    if (form) form.hidden = false;
-    if (statusEl) {
-      statusEl.hidden = true;
-      statusEl.textContent = '';
-    }
-  };
-
-  const openPicker = () => {
-    resetSent();
-    if (overlay) {
-      const inquire = document.getElementById('inquire');
-      if (inquire) {
-        inquire.hidden = true;
-        document.body.classList.remove('is-inquire');
-      }
-      overlay.hidden = false;
-      document.body.classList.add('is-picker');
-      const closeBtn = overlay.querySelector('.picker-close');
-      if (closeBtn) closeBtn.focus();
-    }
-  };
-
-  const closePicker = () => {
-    if (!overlay || overlay.hidden) return;
-    overlay.hidden = true;
-    document.body.classList.remove('is-picker');
-  };
-
-  document.querySelectorAll('.picker-open').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openPicker();
-    });
-  });
-
-  if (overlay) {
-    const closeBtn = overlay.querySelector('.picker-close');
-    if (closeBtn) closeBtn.addEventListener('click', closePicker);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closePicker();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePicker();
-    });
-  }
-
-  if (location.hash === '#picker') openPicker();
-  window.addEventListener('hashchange', () => {
-    if (location.hash === '#picker') openPicker();
-  });
+  const nextEl = form && form.querySelector('[name="_next"]');
+  if (nextEl) nextEl.value = window.location.origin + '/gallery.html';
 
   if (form) {
     form.addEventListener('submit', async (e) => {
