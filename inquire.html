@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>studio333 — Inquiries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="inquire.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a href="gallery.html" class="brand">studio333</a>
+      <nav>
+        <a href="gallery.html">Gallery</a>
+        <a href="featured.html">Featured</a>
+        <a href="inquire.html" class="active">Inquiries</a>
+        <a href="contact.html">Contact</a>
+        <a href="qr.html">Share</a>
+      </nav>
+    </header>
+    <main>
+      <section class="inquire-page">
+        <div class="picker-panel">
+
+      <p class="tagline">Private inquiries</p>
+      <h1 class="picker-title">Select artwork</h1>
+      <p class="picker-lede">Inquire about an original when it&rsquo;s still available (not every piece is), or a gicl&eacute;e print. Those are the only two options.</p>
+      <div class="picker-grid" id="picker-grid"></div>
+      <p class="picker-chosen" id="picker-chosen">Select one or more works to inquire</p>
+      <!-- Preview routing uses Azure Function st333inqfn29. -->
+      <form class="contact-form picker-form" action="https://st333inqfn29.azurewebsites.net/api/inquire" method="POST">
+        <div class="edition-list" id="picker-edition-list" hidden></div>
+                <details class="giclee-info picker-giclee-info">
+          <summary class="giclee-info-summary">
+            <span class="giclee-info-mark" aria-hidden="true">i</span>
+            <span>What&rsquo;s a gicl&eacute;e?</span>
+          </summary>
+          <p class="giclee-info-body">A gicl&eacute;e is a fine-art print of the painting — archival inks on museum paper or canvas. Close to the original. Made to last.</p>
+        </details>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-name">Name</label>
+          <input type="text" id="picker-name" name="name" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-email">Email</label>
+          <input type="email" id="picker-email" name="email" required />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-phone">Phone</label>
+          <input type="tel" id="picker-phone" name="phone" />
+        </div>
+        <div class="contact-field">
+          <label class="contact-label" for="picker-message">Message</label>
+          <textarea id="picker-message" name="message"></textarea>
+        </div>
+        <input type="hidden" name="paintings" id="picker-paintings" />
+        <input type="hidden" name="painting_urls" id="picker-urls" />
+        <input type="hidden" name="editions" id="picker-editions" />
+        <input type="hidden" name="source" id="picker-source" value="picker" />
+        <input type="hidden" name="_subject" id="picker-subject" value="studio333 general inquiry" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://www.studio333gallery.com/gallery.html" />
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
+        <p class="inquire-status" id="picker-status" hidden></p>
+        <button type="submit" class="contact-submit ghost-link">Send</button>
+      </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer-nav">
+      <hr style="border: none; border-top: 1px solid #c8c2ba; margin: 0 0 24px; width: 100%;" />
+      <span class="copyright">© 2026 studio333. All rights reserved.</span>
+    </footer>
+  </div>
+  <script src="availability.js" defer></script>
+  <script src="picker.js" defer></script>
+</body>
+</html>
